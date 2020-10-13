@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla dropdown</title>
+    <style>
+      .menubar {
+        width: 400px;
+        background-color: lightblue;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+      }
+      .menubar a {
+        text-decoration: none;
+      }
+      .menubar a:visited {
+        color: initial;
+      }
+
+      .menu {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        display: none;
+        background-color: burlywood;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 5px 15px 5px;
+      }
+
+      .dropdown-open .dropdown-menu {
+        display: block;
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0;
+      }
+    </style>
+    <script>
+      function handleClick(e) {
+        e.preventDefault();
+        const classList = e.currentTarget.classList;
+
+        if (classList.contains("dropdown-open")) {
+          classList.remove("dropdown-open");
+        } else {
+          classList.add("dropdown-open");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelectorAll(".dropdown")
+          .forEach((el) => el.addEventListener("click", handleClick));
+      });
+    </script>
+  </head>
+  <body>
+    <div class="menubar">
+      <div class="menu"><a href="#">Home</a></div>
+      <div class="menu"><a href="#">Pricing</a></div>
+      <div class="menu dropdown">
+        <a href="#">Products ▼</a>
+        <div class="dropdown-menu">
+          <a href="#">Item</a>
+          <a href="#">Item</a>
+          <a href="#">Item</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
